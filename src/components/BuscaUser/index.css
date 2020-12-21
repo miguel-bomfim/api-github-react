@@ -1,0 +1,9 @@
+.busca {
+  display: flex;
+  flex-direction: column;
+}
+
+.botao {
+  align-self:center;
+  width: 50%;
+}

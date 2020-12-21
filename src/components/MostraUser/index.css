@@ -1,0 +1,9 @@
+.card {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+nav.MuiList-root {
+  background: linear-gradient(to right, #fdfbfb, #ebedee);
+}

@@ -67,19 +67,21 @@ export default function MostraUser({usuario}) {
             {usuario}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            <b>ID:</b> {userInfo.id}
+            <b>ID:</b> <span className="user-info"> {userInfo.id} </span>
           </Typography>
           <Typography gutterBottom color="textSecondary" variant="body2" component="p">
-            <b>GitHub:</b> <a target="blank" href={userInfo.html_url}>{userInfo.html_url}</a>
+            <b>GitHub:</b> <a className="git-link" target="blank" href={userInfo.html_url}>
+                              {userInfo.html_url}
+                            </a>
           </Typography>
           <Typography color="textSecondary" component="p">
-            <b>Repositórios:</b>  {userInfo['public_repos']}
+            <b>Repositórios:</b> <span className="user-info">{userInfo['public_repos']}</span>
           </Typography>
           <Typography color="textSecondary" component="p">
-            <b>Seguidores:</b> {userInfo['followers']}
+            <b>Seguidores:</b> <span className="user-info">{userInfo['followers']}</span>
           </Typography>
           <Typography color="textSecondary" component="p">
-            <b>Seguindo:</b> {userInfo['following']}
+            <b>Seguindo:</b> <span className="user-info">{userInfo['following']}</span>
           </Typography>
         </CardContent>
 

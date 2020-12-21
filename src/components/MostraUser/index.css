@@ -4,6 +4,20 @@
   margin-bottom: 100px;
 }
 
+.user-info {
+  color: rgb(30, 144, 255);
+}
+
+.git-link {
+  text-decoration: none; 
+  color: rgb(30, 144, 255);
+  transition: 300ms;
+}
+
+.git-link:hover {
+  color: black;
+}
+
 nav.MuiList-root {
   background: linear-gradient(to right, #fdfbfb, #ebedee);
 }

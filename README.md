@@ -3,9 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 # Getting Started 
 
 ### `git clone https://github.com/miguel-bomfim/api-github-react.git`
-
-## Available Scripts
-
+##
 In the project directory, you can run:
 
 ### `npm install`

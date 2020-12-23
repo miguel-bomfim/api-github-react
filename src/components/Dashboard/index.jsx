@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import MostraUser from '../MostraUser/MostraUser';
-import PesquisaUser from '../BuscaUser/BuscaUser';
+import MostraUser from '../MostraUser';
+import PesquisaUser from '../BuscaUser';
 
 import { makeStyles, Paper, Tabs, Tab } from '@material-ui/core';
 

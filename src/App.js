@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Dashboard from './components/Dashboard/Dashboard';
+import Dashboard from './components/Dashboard';
 
 import {Container, Typography} from '@material-ui/core'
 import "./assets/index.css"

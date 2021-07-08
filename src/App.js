@@ -13,9 +13,11 @@ export default function App() {
   }
 
   return (
-    <Container component="article" maxWidth="sm">
+    <>
       <Title />
-      <Dashboard usuario={usuario} aoBuscar={getUser} />
-    </Container>
+      <Container component="article" maxWidth="sm">
+        <Dashboard usuario={usuario} aoBuscar={getUser} />
+      </Container>
+    </>
   );
 }

@@ -6,17 +6,17 @@ import { Container } from "@material-ui/core";
 import "fontsource-roboto";
 
 export default function App() {
-  const [usuario, setUsuario] = useState("");
+  const [user, setUser] = useState("");
 
   function getUser(user) {
-    setUsuario(user);
+    setUser(user);
   }
 
   return (
     <>
       <Title />
       <Container component="article" maxWidth="sm">
-        <Dashboard usuario={usuario} aoBuscar={getUser} />
+        <Dashboard user={user} onSearch={getUser} />
       </Container>
     </>
   );

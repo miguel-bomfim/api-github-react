@@ -1,9 +1,9 @@
-.busca {
+.search {
   display: flex;
   flex-direction: column;
 }
 
-.botao {
-  align-self:center;
+.button {
+  align-self: center;
   width: 50%;
 }

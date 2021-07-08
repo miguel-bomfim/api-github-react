@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./index.css";
-import logo from "../../assets/logos/logo.png";
+import logo from "../../assets/logo.png";
 
 function Title() {
   return (

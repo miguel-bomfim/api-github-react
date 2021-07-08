@@ -1,25 +1,23 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 
-import {Button, TextField} from "@material-ui/core"
-import "./index.css"
+import { Button, TextField } from "@material-ui/core";
+import "./SearchUser.css";
 
-export default function BuscaUser({aoBuscar, proximo}) {
-
+export default function SearchUser({ onSearch, next }) {
   const [user, setUser] = useState("");
-    
-  return(
+
+  return (
     <form
-      className="busca"
+      className="search"
       onSubmit={(e) => {
         e.preventDefault();
-        aoBuscar(user);
-        proximo();}
-      }
+        onSearch(user);
+        next();
+      }}
     >
-
       <TextField
-        onChange={(e)=> {
-          setUser(e.target.value); 
+        onChange={(e) => {
+          setUser(e.target.value);
         }}
         required
         value={user}
@@ -31,7 +29,7 @@ export default function BuscaUser({aoBuscar, proximo}) {
       />
 
       <Button
-        className="botao"
+        className="button"
         type="submit"
         variant="contained"
         size="large"
@@ -42,4 +40,3 @@ export default function BuscaUser({aoBuscar, proximo}) {
     </form>
   );
 }
-

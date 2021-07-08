@@ -16,7 +16,7 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import "./index.css";
+import "./ShowUser.css";
 
 //Alert de erro estilizado
 import swal from "sweetalert";
@@ -29,7 +29,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MostraUser({ usuario }) {
+export default function ShowUser({ user }) {
   const classes = useStyles();
   const [userInfo, setUserInfo] = useState([]);
   const [repos, setRepos] = useState([]);
@@ -38,7 +38,7 @@ export default function MostraUser({ usuario }) {
   //Método que puxa da API os dados do usuário e define o state de userInfo
   useEffect(() => {
     axios
-      .get(api.baseURL + `/${usuario}`)
+      .get(api.baseURL + `/${user}`)
       .then((res) => {
         setUserInfo(res.data);
       })
@@ -46,20 +46,20 @@ export default function MostraUser({ usuario }) {
         console.error("ops! ocorreu um erro" + err);
         swal("Usuário não encontrado", "Tente novamente", "error");
       });
-  }, [usuario]);
+  }, [user]);
 
   //Função que pega repositórios do usuário e define o state de repos
-  function pegaRepo() {
+  function pickRepos() {
     setStarred([]);
-    axios.get(api.baseURL + `/${usuario}/repos`).then((res) => {
+    axios.get(api.baseURL + `/${user}/repos`).then((res) => {
       setRepos(res.data);
     });
   }
 
   //Função que pega starred repositórios do usuário e define o state de starred
-  function pegaStar() {
+  function pickStarr() {
     setRepos([]);
-    axios.get(api.baseURL + `/${usuario}/starred`).then((res) => {
+    axios.get(api.baseURL + `/${user}/starred`).then((res) => {
       setStarred(res.data);
     });
   }
@@ -75,7 +75,7 @@ export default function MostraUser({ usuario }) {
         />
         <CardContent>
           <Typography variant="h5" component="h2">
-            {usuario}
+            {user}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             <b>ID:</b> <span className="user-info"> {userInfo.id} </span>
@@ -110,7 +110,7 @@ export default function MostraUser({ usuario }) {
             variant="outlined"
             size="small"
             color="primary"
-            onClick={pegaRepo}
+            onClick={pickRepos}
           >
             Repositórios
           </Button>
@@ -118,7 +118,7 @@ export default function MostraUser({ usuario }) {
             variant="outlined"
             size="small"
             color="primary"
-            onClick={pegaStar}
+            onClick={pickStarr}
           >
             Starred
           </Button>

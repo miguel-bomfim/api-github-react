@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useQuery } from "react-query";
 import api from "../../services/api";
 
-//Estilos
 import {
   Button,
   Card,
@@ -17,6 +17,8 @@ import {
   Typography,
 } from "@material-ui/core";
 import "./ShowUser.css";
+
+import Loading from "../Loading";
 
 //Alert de erro estilizado
 import swal from "sweetalert";
@@ -35,33 +37,36 @@ export default function ShowUser({ user }) {
   const [repos, setRepos] = useState([]);
   const [starred, setStarred] = useState([]);
 
-  //Método que puxa da API os dados do usuário e define o state de userInfo
-  useEffect(() => {
-    axios
-      .get(api.baseURL + `/${user}`)
-      .then((res) => {
-        setUserInfo(res.data);
-      })
-      .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
-        swal("Usuário não encontrado", "Tente novamente", "error");
-      });
-  }, [user]);
+  const fetchUser = async () => {
+    const res = await fetch(`${api.baseURL}/${user}`);
+    return res.json();
+  };
 
-  //Função que pega repositórios do usuário e define o state de repos
-  function pickRepos() {
+  const pickRepos = () => {
     setStarred([]);
     axios.get(api.baseURL + `/${user}/repos`).then((res) => {
       setRepos(res.data);
     });
-  }
+  };
 
-  //Função que pega starred repositórios do usuário e define o state de starred
-  function pickStarr() {
+  const pickStarr = () => {
     setRepos([]);
     axios.get(api.baseURL + `/${user}/starred`).then((res) => {
       setStarred(res.data);
     });
+  };
+
+  const { data, isLoading } = useQuery("fetchUser", fetchUser);
+
+  useEffect(() => {
+    isLoading === false && setUserInfo(data);
+  }, [isLoading, data]);
+
+  if (isLoading === true) {
+    return <Loading />;
+  }
+  if (data.message === "Not Found") {
+    swal("Usuário não encontrado", "Tente novamente", "error");
   }
 
   return (

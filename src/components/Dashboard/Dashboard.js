@@ -2,48 +2,39 @@ import React, { useState } from "react";
 import ShowUser from "../ShowUser/ShowUser";
 import SearchUser from "../SearchUser";
 
-import { makeStyles, Paper, Tabs, Tab } from "@material-ui/core";
+import { Paper, Tabs, Tab } from "@material-ui/core";
 
-//Tabs parameters (@material-ui)
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-  },
-});
-
-export default function Dashboard({ onSearch, user }) {
+const Dashboard = ({ onSearch, user }) => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [disable, setDisable] = useState(true);
+
+  const nextStep = () => {
+    setCurrentStep(currentStep + 1);
+    setDisable(false);
+  };
 
   const steps = [
     <SearchUser next={nextStep} onSearch={onSearch} />,
     <ShowUser user={user} />,
   ];
 
-  const classes = useStyles();
-
-  const handleChange = (event, newValue) => {
-    setCurrentStep(newValue);
-  };
-
-  function nextStep() {
-    setCurrentStep(currentStep + 1);
-  }
-
   return (
     <>
-      <Paper className={classes.root}>
+      <Paper>
         <Tabs
           value={currentStep}
-          onChange={handleChange}
+          onChange={(event, newValue) => setCurrentStep(newValue)}
           indicatorColor="primary"
           textColor="primary"
           centered
         >
           <Tab label="Busca" required />
-          <Tab label="Info" />
+          <Tab label="Info" disabled={disable} />
         </Tabs>
       </Paper>
       {steps[currentStep]}
     </>
   );
-}
+};
+
+export default Dashboard;

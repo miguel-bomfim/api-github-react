@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Dashboard from "./components/Dashboard";
 import Title from "./components/Title";
+import GoogleAd from "./components/GoogleAd";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Container } from "@material-ui/core";
 import "fontsource-roboto";
@@ -21,6 +22,7 @@ export default function App() {
           <Dashboard user={user} onSearch={getUser} />
         </Container>
       </QueryClientProvider>
+      <GoogleAd />
     </>
   );
 }

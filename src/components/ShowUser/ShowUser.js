@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useQuery } from "react-query";
 import api from "../../services/api";
 
 import {
@@ -31,16 +30,33 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ShowUser({ user }) {
+export default function ShowUser({ user, back }) {
   const classes = useStyles();
-  const [userInfo, setUserInfo] = useState([]);
+  const [userInfo, setUserInfo] = useState("");
   const [repos, setRepos] = useState([]);
   const [starred, setStarred] = useState([]);
 
   const fetchUser = async () => {
-    const res = await fetch(`${api.baseURL}/${user}`);
-    return res.json();
+    axios
+      .get(api.baseURL + `/${user}`)
+      .then((res) => {
+        setUserInfo(res.data);
+      })
+      .catch((err) => {
+        back(-1, true);
+        console.error("ops! ocorreu um erro" + err);
+        swal("Usuário não encontrado", "Tente novamente", "error");
+      });
   };
+
+  useEffect(() => {
+    fetchUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (userInfo === "") {
+    return <Loading />;
+  }
 
   const pickRepos = () => {
     setStarred([]);
@@ -55,19 +71,6 @@ export default function ShowUser({ user }) {
       setStarred(res.data);
     });
   };
-
-  const { data, isLoading } = useQuery("fetchUser", fetchUser);
-
-  useEffect(() => {
-    isLoading === false && setUserInfo(data);
-  }, [isLoading, data]);
-
-  if (isLoading === true) {
-    return <Loading />;
-  }
-  if (data.message === "Not Found") {
-    swal("Usuário não encontrado", "Tente novamente", "error");
-  }
 
   return (
     <div className="card">

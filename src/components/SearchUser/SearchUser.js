@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button, TextField } from "@material-ui/core";
 import "./SearchUser.css";
 
-export default function SearchUser({ onSearch, next }) {
+const SearchUser = ({ onSearch, next }) => {
   const [user, setUser] = useState("");
 
   return (
@@ -12,7 +12,7 @@ export default function SearchUser({ onSearch, next }) {
       onSubmit={(e) => {
         e.preventDefault();
         onSearch(user);
-        next();
+        next(1, false);
       }}
     >
       <TextField
@@ -35,8 +35,10 @@ export default function SearchUser({ onSearch, next }) {
         size="large"
         color="primary"
       >
-        Buscar
+        Pesquisar
       </Button>
     </form>
   );
-}
+};
+
+export default SearchUser;

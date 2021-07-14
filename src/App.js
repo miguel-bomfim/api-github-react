@@ -12,7 +12,7 @@ export default function App() {
       <Container component="article" maxWidth="sm">
         <Dashboard />
       </Container>
-      <GoogleAd />
+      <GoogleAd slot="6705205382" classNames="page-bottom" />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import { Button, TextField } from "@material-ui/core";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import "./SearchUser.css";
 
 const SearchUser = ({ onSearch, next }) => {

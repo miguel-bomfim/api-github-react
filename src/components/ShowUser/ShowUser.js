@@ -12,17 +12,14 @@ import {
   List,
   ListItem,
   ListItemText,
-  makeStyles,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import "./ShowUser.css";
+
+import { makeStyles } from "@mui/styles";
 
 import Loading from "../Loading";
 
-//Alert de erro estilizado
-import swal from "sweetalert";
-
-//Parâmetros do card (@material-ui)
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -45,7 +42,7 @@ export default function ShowUser({ user, back }) {
       .catch((err) => {
         back(-1, true);
         console.error("ops! ocorreu um erro" + err);
-        swal("Usuário não encontrado", "Tente novamente", "error");
+        alert("Usuário não encontrado", "Tente novamente", "error");
       });
   };
 

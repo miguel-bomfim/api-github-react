@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import ShowUser from "../ShowUser/ShowUser";
 import SearchUser from "../SearchUser";
 
-import { Tabs, Tab } from "@material-ui/core";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 
 const Dashboard = () => {
   const [user, setUser] = useState();
